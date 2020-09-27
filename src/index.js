@@ -1,4 +1,7 @@
 import "./styles.css";
-import { actions } from "./store.js";
+import { App } from "./App.js";
+import { render } from "lit-html";
+import { effect } from "@vue/reactivity/dist/reactivity.esm-browser.js";
+import { store, actions } from "./store.js";
 
-document.onload = actions.setStep(1);
+effect(() => render(App(store, actions), document.querySelector("#app")));

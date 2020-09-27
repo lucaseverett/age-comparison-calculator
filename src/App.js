@@ -27,23 +27,14 @@ const styles = css`
 function App(store, actions) {
   const { step } = store;
 
-  function content() {
-    if (step === 1) {
-      return Step1(store, actions);
-    } else if (step === 2) {
-      return Step2(store, actions);
-    } else if (step === 3) {
-      return Step3(store, actions);
-    } else if (step === 4) {
-      return Step4(store, actions);
-    }
-  }
+  const content = {
+    1: Step1,
+    2: Step2,
+    3: Step3,
+    4: Step4,
+  };
 
-  return html`
-    <div class=${styles}>
-      ${content()}
-    </div>
-  `;
+  return html` <div class=${styles}>${content[step](store, actions)}</div> `;
 }
 
 export { App };

@@ -1,13 +1,11 @@
-import { App } from "./App.js";
-import { render } from "lit-html";
-import { observable, observe } from "@nx-js/observer-util";
+import { reactive } from "@vue/reactivity/dist/reactivity.esm-browser.js";
 import { isValidBirthdate } from "./dateFns.js";
 
-const store = observable({
+const store = reactive({
   yourBirthday: "",
   theirName: "",
   theirBirthday: "",
-  step: "",
+  step: 1,
   errorMessage: "",
 });
 
@@ -56,6 +54,4 @@ const actions = {
   startOver,
 };
 
-observe(() => render(App(store, actions), document.querySelector("#app")));
-
-export { actions };
+export { store, actions };
